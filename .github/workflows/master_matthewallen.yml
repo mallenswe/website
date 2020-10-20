@@ -15,16 +15,16 @@ jobs:
     steps:
     - uses: actions/checkout@master
 
-    - name: Set up .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: '3.1.102'
+   # - name: Set up .NET Core
+  #    uses: actions/setup-dotnet@v1
+    #  with:
+    #    dotnet-version: '3.1.102'
 
-    - name: Build with dotnet
-      run: dotnet build --configuration Release
+   # - name: Build with dotnet
+   #   run: dotnet build --configuration Release
 
-    - name: dotnet publish
-      run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+   # - name: dotnet publish
+   #   run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
@@ -32,4 +32,4 @@ jobs:
         app-name: 'matthewallen'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_ad6845599c54415786720dd334cc5793 }}
-        package: ${{env.DOTNET_ROOT}}/myapp 
+        #package: ${{env.DOTNET_ROOT}}/myapp 
