@@ -30,6 +30,6 @@ jobs:
       uses: azure/webapps-deploy@v2
       with:
         app-name: 'matthewallen'
-        slot-name: 'matthewallen-dev'
+        slot-name: 'dev'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_ad6845599c54415786720dd334cc5793 }}
         #package: ${{env.DOTNET_ROOT}}/myapp 
