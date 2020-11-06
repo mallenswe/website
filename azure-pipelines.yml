@@ -21,17 +21,9 @@ steps:
     ng build --prod
   workingDirectory: $(Build.SourcesDirectory)/matthewallen
   displayName: 'npm install and build'
-- task: ArchiveFiles@2
+
+- task: PublishPipelineArtifact@1
   inputs:
-    rootFolderOrFile: '$(Build.BinariesDirectory)'
-    includeRootFolder: true
-    archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    replaceExistingArchive: true
-- task: AzureRmWebAppDeployment@4
-  inputs:
-    ConnectionType: 'AzureRM'
-    azureSubscription: 'matthewallen - Azure'
-    appType: 'webApp'
-    WebAppName: 'matthewallen'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    targetPath: '$(Pipeline.Workspace)/dist/matthewallen/'
+    artifact: 'Angular Prod Build'
+    publishLocation: 'pipeline'
