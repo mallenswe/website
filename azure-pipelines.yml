@@ -17,7 +17,7 @@ steps:
 
 - script: 
   workingDirectory: $(Build.SourcesDirectory)/matthewallen
-    npm install -g @angular/cli
-    npm install
-    ng build --prod
+    | npm install -g @angular/cli
+      npm install
+      ng build --prod
   displayName: 'npm install and build'
