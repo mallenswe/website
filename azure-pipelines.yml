@@ -16,7 +16,7 @@ steps:
   displayName: 'Install Node.js'
 
 - script: 
-  workingDirectory: -$(Build.SourcesDirectory)/matthewallen
+  workingDirectory: $(Build.SourcesDirectory)/matthewallen
 - script: |
     npm install -g @angular/cli
     npm install
