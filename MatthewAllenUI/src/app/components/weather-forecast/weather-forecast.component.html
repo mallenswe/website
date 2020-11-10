@@ -1,4 +1,4 @@
-<p>weather-forecast works!</p>
+<button (click)="getWeatherForecast()">Get Latest Weather</button>
 <div class="card-container weather-container">
     <div *ngFor="let weather of weatherForecast" class="card card-small weather-card">
             <h3>{{weather.date | date}}</h3>

@@ -1,6 +1,6 @@
 export class WeatherForecast {
     Date: Date;
-    TemperatureC: Int32Array;
-    TemperatureF: Int32Array;
+    TemperatureC: number;
+    TemperatureF: number;
     Summary: string;
 }
