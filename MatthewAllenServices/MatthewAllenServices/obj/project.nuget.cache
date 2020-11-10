@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "V5bT0gwhBp8WBx5AkH4pCLLGlGRnwmh1kiNN7s853p5V0DtDDhKF1XSEb5pXQytltceQdoSR9V2+qwBuVacxmA==",
+  "success": true,
+  "projectFilePath": "D:\\GitHub\\mallenswe\\website\\MatthewAllenServices\\MatthewAllenServices\\MatthewAllenServices.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Spike\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\Spike\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\Spike\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
+    "C:\\Users\\Spike\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "C:\\Users\\Spike\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
+    "C:\\Users\\Spike\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.6.3\\swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512"
+  ],
+  "logs": []
+}

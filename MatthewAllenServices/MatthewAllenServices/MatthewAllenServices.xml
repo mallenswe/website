@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MatthewAllenServices</name>
+    </assembly>
+    <members>
+        <member name="M:MatthewAllenServices.Controllers.WeatherForecastController.Get">
+            <summary>
+            Get a random weather forecast
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
