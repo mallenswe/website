@@ -1,0 +1,22 @@
+.weather-container {
+    flex-wrap: inherit;
+}
+
+.weather-card {
+    width: 180px;
+    height: 200px;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: inherit;
+}
+.weather-summary {
+    align-self: center;
+}
+
+.temperature {
+    padding: 0 5px;
+    border-bottom: 1px solid #eeeeee;
+}
+.temperature-actual {
+    float: right;
+}

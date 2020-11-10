@@ -1,5 +1,4 @@
-import { HttpClient, HttpRequest } from '@angular/common/http';
-import { Component, Injectable } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,16 +6,6 @@ import { Component, Injectable } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 
-@Injectable()
 export class AppComponent {
   title: string = 'Matthew Allen';
-  baseURL: string = 'https://localhost:44326';
-
-  constructor(
-    httpClient: HttpClient
-  ) {
-    httpClient.get(`${this.baseURL}/WeatherForecast`).subscribe(response => {
-      console.log('WeatheForeast response: ', response);
-    })
-  }
 }
