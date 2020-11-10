@@ -23,15 +23,18 @@ steps:
     npm install
     ng build --prod
   workingDirectory: '$(Build.SourcesDirectory)/MatthewAllenUI'
+  displayName: 'npm install and build'
 
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.SourcesDirectory)/MatthewAllenUI/dist/'
     ArtifactName: 'drop'
     publishLocation: 'Container'
-  displayName: 'npm install and build'
+  displayName: 'Publish UI Artifact'
+  
 
 - script: dotnet build --configuration $(buildConfiguration)
+  workingDirectory: '$(Build.SourcesDirectory)/MatthewAllenServices'
   displayName: 'dotnet build $(buildConfiguration)'
 
 - task: DotNetCoreCLI@2
@@ -40,9 +43,11 @@ steps:
     publishWebProjects: True
     arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     zipAfterPublish: True
+  displayName: 'dotnet publish $(buildConfiguration)'
 
 # this code takes all the files in $(Build.ArtifactStagingDirectory) and uploads them as an artifact of your build.
 - task: PublishBuildArtifacts@1
   inputs:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
     artifactName: 'MatthewAllenServicesArtifact'
+  displayName: 'dotnet artifact'
