@@ -25,12 +25,17 @@ steps:
   workingDirectory: '$(Build.SourcesDirectory)/MatthewAllenUI'
   displayName: 'npm install and build'
 
-- task: PublishBuildArtifacts@1
+- task: CopyFiles@2
   inputs:
-    PathtoPublish: '$(Build.SourcesDirectory)/MatthewAllenUI/dist/'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
-  displayName: 'Publish UI Artifact'
+    contents: '$(Build.SourcesDirectory)/MatthewAllenUI/dist/'
+    targetFolder: $(Build.ArtifactStagingDirectory)
+  displayName: 'Copy UI to $(Build.ArtifactStagingDirectory)'
+# - task: PublishBuildArtifacts@1
+#   inputs:
+#     PathtoPublish: '$(Build.SourcesDirectory)/MatthewAllenUI/dist/'
+#     ArtifactName: 'drop'
+#     publishLocation: 'Container'
+#   displayName: 'Publish UI Artifact'
   
 
 - script: dotnet build --configuration $(buildConfiguration)
@@ -49,5 +54,5 @@ steps:
 - task: PublishBuildArtifacts@1
   inputs:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
-    artifactName: 'MatthewAllenServicesArtifact'
+    artifactName: 'MatthewAllenArtifact'
   displayName: 'dotnet artifact'
