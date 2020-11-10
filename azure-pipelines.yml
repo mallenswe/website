@@ -27,9 +27,15 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    contents: '$(Build.SourcesDirectory)/MatthewAllenUI/dist/'
-    targetFolder: $(Build.ArtifactStagingDirectory)
-  displayName: 'Copy UI to $(Build.ArtifactStagingDirectory)'
+    SourceFolder: '$(Build.SourcesDirectory)/MatthewAllenUI/dist/'
+    Contents: '**'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+# - task: CopyFiles@2
+#   inputs:
+#     contents: '$(Build.SourcesDirectory)/MatthewAllenUI/dist/'
+#     targetFolder: $(Build.ArtifactStagingDirectory)
+#   displayName: 'Copy UI to $(Build.ArtifactStagingDirectory)'
 # - task: PublishBuildArtifacts@1
 #   inputs:
 #     PathtoPublish: '$(Build.SourcesDirectory)/MatthewAllenUI/dist/'
