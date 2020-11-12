@@ -2,7 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <StartupObject>MatthewAllenServices.Program</StartupObject>
+    <StartupObject></StartupObject>
+    <UserSecretsId>47c5f86b-d799-4c77-af43-ab06e86f6bdc</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
