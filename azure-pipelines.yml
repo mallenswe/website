@@ -7,7 +7,7 @@ trigger:
 - dev
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'windows-2019'
 
 variables:
   buildConfiguration: 'Release'
@@ -25,9 +25,14 @@ steps:
   workingDirectory: '$(Build.SourcesDirectory)\MatthewAllenXYZ\MatthewAllenUI'
   displayName: 'npm install and build'
 
+- script: tree
+  workingDirectory: '$(Build.SourcesDirectory)'
+  displayName: 'SourcesDirectory Tree'
+
+
 
 - task: CopyFiles@2
-  displayName: 'Copying Dist to ArtifactStagingDirectory'
+  displayName: 'Copying Dist to ArtifactStagingDirectory $(Build.SourcesDirectory)\MatthewAllenXYZ\'
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)\MatthewAllenXYZ\MatthewAllenUI\dist'
     Contents: '**'
