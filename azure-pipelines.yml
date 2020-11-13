@@ -22,8 +22,16 @@ steps:
   workingDirectory: '$(Build.SourcesDirectory)/MatthewAllenXYZ/MatthewAllenUI'
   displayName: 'npm install and build'
 
+- script: dir
+  workingDirectory: '$(Build.SourcesDirectory)/MatthewAllenXYZ'
+  displayName: 'MatthewAllenXYZ dir'
+
+- script: %CD%
+  displayName: 'MatthewAllenXYZ CD'  
+
+
 - task: CopyFiles@2
-  displayName: 'Copying Dist to ArtifactStagingDirectory'
+  displayName: 'Copying Dist to ArtifactStagingDirectory $(Build.SourcesDirectory)/MatthewAllenXYZ/'
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)/MatthewAllenXYZ/MatthewAllenUI/dist/'
     Contents: '**'
