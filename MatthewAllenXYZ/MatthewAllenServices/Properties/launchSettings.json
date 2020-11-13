@@ -14,7 +14,7 @@
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "APPINSIGHTS_INSTRUMENTATIONKEY": "eee4695c-242d-436d-ad9b-c426e8a6bab5"
+        "APPINSIGHTS_INSTRUMENTATIONKEY": "60b8d19f-58b6-44c5-8798-b52bfe91ee7e"
       }
     },
     "MatthewAllenServices": {

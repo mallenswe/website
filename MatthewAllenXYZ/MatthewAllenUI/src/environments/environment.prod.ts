@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  baseURL: 'https://matthewallenservice.azurewebsites.net',
+  baseURL: 'https://matthewallenservices.azurewebsites.net',
   weatherController: 'WeatherForecast'
 };

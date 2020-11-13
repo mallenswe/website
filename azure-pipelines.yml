@@ -22,12 +22,12 @@ steps:
     npm install -g @angular/cli
     npm install
     ng build --prod
-  workingDirectory: '$(Build.SourcesDirectory)/MatthewAllenUI'
+  workingDirectory: '$(Build.SourcesDirectory)/MatthewAllenXYZ/MatthewAllenUI'
   displayName: 'npm install and build'
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(Build.SourcesDirectory)/MatthewAllenUI/dist/'
+    SourceFolder: '$(Build.SourcesDirectory)/MatthewAllenXYZ/MatthewAllenUI/dist/'
     Contents: '**'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
@@ -44,9 +44,9 @@ steps:
 #   displayName: 'Publish UI Artifact'
   
 
-- script: dotnet build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)
-  workingDirectory: '$(Build.SourcesDirectory)/MatthewAllenServices'
-  displayName: 'dotnet build $(buildConfiguration)'
+# - script: dotnet build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)
+#   workingDirectory: '$(Build.SourcesDirectory)/MatthewAllenServices'
+#   displayName: 'dotnet build $(buildConfiguration)'
 
 # - task: DotNetCoreCLI@2
 #   inputs:
@@ -60,5 +60,5 @@ steps:
 - task: PublishBuildArtifacts@1
   inputs:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
-    artifactName: 'MatthewAllenArtifact'
-  displayName: 'dotnet artifact'
+    artifactName: 'MatthewAllenUIArtifact'
+  displayName: 'UI Artifact'
