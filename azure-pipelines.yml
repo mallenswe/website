@@ -17,55 +17,64 @@ steps:
   displayName: 'Use Node.js v14.15.0'
   inputs:
     versionSpec: v14.15.0
-
-- script: |
-    npm install -g @angular/cli
-    npm install
-    ng build --prod
-  workingDirectory: '$(Build.SourcesDirectory)\MatthewAllenXYZ\MatthewAllenUI'
-  displayName: 'npm install and build'
-
-- script: tree
-  workingDirectory: '$(Build.SourcesDirectory)'
-  displayName: 'SourcesDirectory Tree'
-
-
-
-- task: CopyFiles@2
-  displayName: 'Copying Dist to ArtifactStagingDirectory $(Build.SourcesDirectory)\MatthewAllenXYZ\'
-  inputs:
-    SourceFolder: '$(Build.SourcesDirectory)\MatthewAllenXYZ\MatthewAllenUI\dist'
-    Contents: '**'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
-# - task: CopyFiles@2
-#   inputs:
-#     contents: '$(Build.SourcesDirectory)/MatthewAllenUI/dist/'
-#     targetFolder: $(Build.ArtifactStagingDirectory)
-#   displayName: 'Copy UI to $(Build.ArtifactStagingDirectory)'
-# - task: PublishBuildArtifacts@1
-#   inputs:
-#     PathtoPublish: '$(Build.SourcesDirectory)/MatthewAllenUI/dist/'
-#     ArtifactName: 'drop'
-#     publishLocation: 'Container'
-#   displayName: 'Publish UI Artifact'
   
+- task: Npm@1
+  displayName: 'npm install copy'
+  inputs:
+    workingDir: MatthewAllenXYZ/MatthewAllenUI/
+    verbose: true
 
-# - script: dotnet build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)
-#   workingDirectory: '$(Build.SourcesDirectory)/MatthewAllenServices'
-#   displayName: 'dotnet build $(buildConfiguration)'
-
-# - task: DotNetCoreCLI@2
-#   inputs:
-#     command: publish
-#     publishWebProjects: True
-#     zipAfterPublish: True
-#     arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
-#   displayName: 'dotnet publish $(buildConfiguration)'
+- task: Npm@1
+  displayName: 'npm run build'
+  inputs:
+    command: custom
+    workingDir: MatthewAllenXYZ/MatthewAllenUI
+    verbose: true
+    customCommand: 'npm run build'
 
 # this code takes all the files in $(Build.ArtifactStagingDirectory) and uploads them as an artifact of your build.
 - task: PublishBuildArtifacts@1
   displayName: 'Publish UI Artifact'
   inputs:
-    pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
-    artifactName: 'MatthewAllenUIArtifact'
+    pathtoPublish: MatthewAllenXYZ/MatthewAllenUI/dist 
+    artifactName: MatthewAllenUIArtifact
+
+
+
+
+    ###### FOR UBUNTU-LATEST ######
+
+# trigger:
+# - dev
+
+# pool:
+#   vmImage: 'ubuntu-latest'
+
+# variables:
+#   buildConfiguration: 'Release'
+
+# steps:
+# - task: NodeTool@0
+#   inputs:
+#     versionSpec: '10.x'
+#   displayName: 'Install Node.js'
+
+# - script: |
+#     npm install -g @angular/cli
+#     npm install
+#     ng build --prod
+#   workingDirectory: '$(Build.SourcesDirectory)/MatthewAllenXYZ/MatthewAllenUI'
+#   displayName: 'npm install and build'
+
+# - task: CopyFiles@2
+#   inputs:
+#     SourceFolder: '$(Build.SourcesDirectory)/MatthewAllenXYZ/MatthewAllenUI/dist/'
+#     Contents: '**'
+#     TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+# # this code takes all the files in $(Build.ArtifactStagingDirectory) and uploads them as an artifact of your build.
+# - task: PublishBuildArtifacts@1
+#   inputs:
+#     pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
+#     artifactName: 'MatthewAllenUIArtifact'
+#   displayName: 'UI Artifact'
