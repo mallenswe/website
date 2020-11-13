@@ -23,7 +23,7 @@ steps:
   displayName: 'npm install and build'
 
 - script: dir
-  workingDirectory: '$(Build.SourcesDirectory)/MatthewAllenXYZ'
+  workingDirectory: '$(Build.SourcesDirectory)/MatthewAllenXYZ/MatthewAllenUI'
   displayName: 'MatthewAllenXYZ dir'
 
 
