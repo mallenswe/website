@@ -3,78 +3,81 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
-trigger:
-- dev
 
-pool:
-  vmImage: 'windows-2019'
+   ###### FOR WINDOWS-2019 ######
 
-variables:
-  buildConfiguration: 'Release'
+# trigger:
+# - dev
+
+# pool:
+#   vmImage: 'windows-2019'
+
+# variables:
+#   buildConfiguration: 'Release'
   
-steps:
-- task: NodeTool@0
-  displayName: 'Use Node.js v14.15.0'
-  inputs:
-    versionSpec: v14.15.0
+# steps:
+# - task: NodeTool@0
+#   displayName: 'Use Node.js v14.15.0'
+#   inputs:
+#     versionSpec: v14.15.0
   
-- task: Npm@1
-  displayName: 'npm install copy'
-  inputs:
-    workingDir: MatthewAllenXYZ/MatthewAllenUI/
-    verbose: true
+# - task: Npm@1
+#   displayName: 'npm install copy'
+#   inputs:
+#     workingDir: MatthewAllenXYZ/MatthewAllenUI/
+#     verbose: true
 
-- task: Npm@1
-  displayName: 'npm run build'
-  inputs:
-    command: custom
-    workingDir: MatthewAllenXYZ/MatthewAllenUI
-    verbose: true
-    customCommand: 'run-script build'
+# - task: Npm@1
+#   displayName: 'npm run build'
+#   inputs:
+#     command: custom
+#     workingDir: MatthewAllenXYZ/MatthewAllenUI
+#     verbose: true
+#     customCommand: 'run-script build'
 
-# this code takes all the files in $(Build.ArtifactStagingDirectory) and uploads them as an artifact of your build.
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish UI Artifact'
-  inputs:
-    pathtoPublish: MatthewAllenXYZ/MatthewAllenUI/dist 
-    artifactName: MatthewAllenUIArtifact
+# # this code takes all the files in $(Build.ArtifactStagingDirectory) and uploads them as an artifact of your build.
+# - task: PublishBuildArtifacts@1
+#   displayName: 'Publish UI Artifact'
+#   inputs:
+#     pathtoPublish: MatthewAllenXYZ/MatthewAllenUI/dist 
+#     artifactName: MatthewAllenUIArtifact
 
 
 
 
     ###### FOR UBUNTU-LATEST ######
 
-# trigger:
-# - dev
+trigger:
+- dev
 
-# pool:
-#   vmImage: 'ubuntu-latest'
+pool:
+  vmImage: 'ubuntu-latest'
 
-# variables:
-#   buildConfiguration: 'Release'
+variables:
+  buildConfiguration: 'Release'
 
-# steps:
-# - task: NodeTool@0
-#   inputs:
-#     versionSpec: '10.x'
-#   displayName: 'Install Node.js'
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
 
-# - script: |
-#     npm install -g @angular/cli
-#     npm install
-#     ng build --prod
-#   workingDirectory: '$(Build.SourcesDirectory)/MatthewAllenXYZ/MatthewAllenUI'
-#   displayName: 'npm install and build'
+- script: |
+    npm install -g @angular/cli
+    npm install
+    ng build --prod
+  workingDirectory: '$(Build.SourcesDirectory)/MatthewAllenXYZ/MatthewAllenUI'
+  displayName: 'npm install and build'
 
-# - task: CopyFiles@2
-#   inputs:
-#     SourceFolder: '$(Build.SourcesDirectory)/MatthewAllenXYZ/MatthewAllenUI/dist/'
-#     Contents: '**'
-#     TargetFolder: '$(Build.ArtifactStagingDirectory)'
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)/MatthewAllenXYZ/MatthewAllenUI/dist/'
+    Contents: '**'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
-# # this code takes all the files in $(Build.ArtifactStagingDirectory) and uploads them as an artifact of your build.
-# - task: PublishBuildArtifacts@1
-#   inputs:
-#     pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
-#     artifactName: 'MatthewAllenUIArtifact'
-#   displayName: 'UI Artifact'
+# this code takes all the files in $(Build.ArtifactStagingDirectory) and uploads them as an artifact of your build.
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
+    artifactName: 'MatthewAllenUIArtifact'
+  displayName: 'UI Artifact'
