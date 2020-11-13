@@ -27,14 +27,6 @@ namespace MatthewAllenServices
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            services.AddSwaggerGen(options =>
-            {
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-
-                options.IncludeXmlComments(xmlPath);
-            });
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",
@@ -42,6 +34,15 @@ namespace MatthewAllenServices
                     .AllowAnyMethod()
                     .AllowAnyHeader());
             });
+
+            services.AddSwaggerGen(options =>
+            {
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                options.IncludeXmlComments(xmlPath);
+            });
+
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +54,7 @@ namespace MatthewAllenServices
             //    .AllowAnyMethod()
             //    .AllowAnyHeader();
             //});
+            app.UseCors("CorsPolicy");
 
             if (env.IsDevelopment())
             {
@@ -69,8 +71,6 @@ namespace MatthewAllenServices
             {
                 endpoints.MapControllers();
             });
-
-            app.UseCors("CorsPolicy");
 
             app.UseSwagger();
             app.UseSwaggerUI(options =>

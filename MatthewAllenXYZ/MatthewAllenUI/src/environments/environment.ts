@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   baseURL: 'https://localhost:44326',
-  weatherController: 'WeatherForecast'
+  weatherController: 'WeatherForecast',
+  colorChanger: 'ColorChanger'
 };
 
 /*

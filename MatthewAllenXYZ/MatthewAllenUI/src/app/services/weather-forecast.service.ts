@@ -18,10 +18,14 @@ export class WeatherForecastService {
 
   public getWeatherForecast(): Observable<Array<WeatherForecast>> {
     const URL = `${environment.baseURL}/${environment.weatherController}`;
+    console.log('weather forecast url: ', URL);
     return this.httpClient.get<Array<WeatherForecast>>(URL)
       .pipe(
           map(
-              (response: Array<WeatherForecast>) => response
+              (response: Array<WeatherForecast>) => {
+               console.log('weather forecast reponse: ', response);
+                return response
+              }
             )
           );
   }

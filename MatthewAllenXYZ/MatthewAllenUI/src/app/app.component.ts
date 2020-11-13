@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ColorChangerService } from './services/color-changer.service';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +9,17 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
   title: string = 'Matthew Allen';
+
+
+  constructor(
+    private colorChangerService: ColorChangerService
+  ) {}
+
+  public changeColor() {
+    this.colorChangerService.getColor().subscribe((color:Array<string>) => {
+      const highlightCard = document.getElementById('title-card');
+      const commaSeperatedColor = color.join(',');
+      highlightCard.style.backgroundColor = `rgb(${commaSeperatedColor})`;
+    })
+  }
 }
