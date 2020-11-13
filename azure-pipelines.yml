@@ -19,18 +19,18 @@ steps:
     npm install -g @angular/cli
     npm install
     ng build --prod
-  workingDirectory: '$(Build.SourcesDirectory)/MatthewAllenXYZ/MatthewAllenUI'
+  workingDirectory: '$(Build.SourcesDirectory)\MatthewAllenXYZ\MatthewAllenUI'
   displayName: 'npm install and build'
 
 - script: dir
-  workingDirectory: '$(Build.SourcesDirectory)/MatthewAllenXYZ/MatthewAllenUI'
+  workingDirectory: '$(Build.SourcesDirectory)\MatthewAllenXYZ\MatthewAllenUI'
   displayName: 'MatthewAllenXYZ dir'
 
 
 - task: CopyFiles@2
-  displayName: 'Copying Dist to ArtifactStagingDirectory $(Build.SourcesDirectory)/MatthewAllenXYZ/'
+  displayName: 'Copying Dist to ArtifactStagingDirectory $(Build.SourcesDirectory)\MatthewAllenXYZ\'
   inputs:
-    SourceFolder: '$(Build.SourcesDirectory)/MatthewAllenXYZ/MatthewAllenUI/dist/'
+    SourceFolder: '$(Build.SourcesDirectory)\MatthewAllenXYZ\MatthewAllenUI\dist'
     Contents: '**'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
