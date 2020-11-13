@@ -24,7 +24,15 @@ steps:
 
 - script: dir
   workingDirectory: '$(Build.SourcesDirectory)\MatthewAllenXYZ\MatthewAllenUI'
+  displayName: 'MatthewAllenUI dir'
+
+  - script: dir
+  workingDirectory: '$(Build.SourcesDirectory)\MatthewAllenXYZ\'
   displayName: 'MatthewAllenXYZ dir'
+
+  - script: dir
+  workingDirectory: '$(Build.SourcesDirectory)'
+  displayName: 'SourcesDirectory dir'
 
 
 - task: CopyFiles@2
