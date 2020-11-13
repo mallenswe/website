@@ -7,7 +7,8 @@ trigger:
 - dev
 
 pool:
-  name: Azure Pipelines
+  vmImage: 'windows-2019'
+  
 steps:
 - task: NodeTool@0
   displayName: 'Use Node.js v14.15.0'
