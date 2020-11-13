@@ -12,6 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
+      "launchUrl": "swagger/index.html",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "APPINSIGHTS_INSTRUMENTATIONKEY": "60b8d19f-58b6-44c5-8798-b52bfe91ee7e"
@@ -20,6 +21,7 @@
     "MatthewAllenServices": {
       "commandName": "Project",
       "launchBrowser": true,
+      "launchUrl": "swagger/index.html",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

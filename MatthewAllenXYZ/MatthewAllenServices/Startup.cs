@@ -76,7 +76,7 @@ namespace MatthewAllenServices
             app.UseSwaggerUI(options =>
             {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "Matthew Allen Services");
-                options.RoutePrefix = string.Empty;
+                //options.RoutePrefix = string.Empty;
             });
         }
     }
