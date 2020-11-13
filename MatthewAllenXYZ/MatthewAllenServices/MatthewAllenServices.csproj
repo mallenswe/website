@@ -27,7 +27,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>D:\GitHub\mallenswe\website\MatthewAllenServices\MatthewAllenServices\MatthewAllenServices.xml</DocumentationFile>
+    <DocumentationFile>\MatthewAllenXYZ\MatthewAllenServices\MatthewAllenServices.xml</DocumentationFile>
   </PropertyGroup>
 
 
