@@ -7,16 +7,12 @@ trigger:
 - dev
 
 pool:
-  vmImage: 'ubuntu-latest'
-
-variables:
-  buildConfiguration: 'Release'
-
+  name: Azure Pipelines
 steps:
 - task: NodeTool@0
+  displayName: 'Use Node.js v14.15.0'
   inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
+    versionSpec: v14.15.0
 
 - script: |
     npm install -g @angular/cli
@@ -26,6 +22,7 @@ steps:
   displayName: 'npm install and build'
 
 - task: CopyFiles@2
+  displayName: 'Copying Dist to ArtifactStagingDirectory'
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)/MatthewAllenXYZ/MatthewAllenUI/dist/'
     Contents: '**'
@@ -58,7 +55,7 @@ steps:
 
 # this code takes all the files in $(Build.ArtifactStagingDirectory) and uploads them as an artifact of your build.
 - task: PublishBuildArtifacts@1
+  displayName: 'Publish UI Artifact'
   inputs:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
     artifactName: 'MatthewAllenUIArtifact'
-  displayName: 'UI Artifact'
