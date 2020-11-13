@@ -28,30 +28,32 @@ namespace MatthewAllenServices
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddCors();
-            services.AddSwaggerGen(options => {
+            services.AddSwaggerGen(options =>
+            {
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
 
                 options.IncludeXmlComments(xmlPath);
+            });
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
             });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseCors(options =>
-            {
-                options.WithOrigins("http://localhost:4200")
-                .AllowAnyMethod()
-                .AllowAnyHeader();
-            });
-            app.UseSwagger();
-            app.UseSwaggerUI(options =>
-            {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "Matthew Allen Services");
-                options.RoutePrefix = string.Empty;
-            });
+            //app.UseCors(options =>
+            //{
+            //    options.WithOrigins("http://localhost:4200")
+            //    .AllowAnyMethod()
+            //    .AllowAnyHeader();
+            //});
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -66,6 +68,15 @@ namespace MatthewAllenServices
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseCors("CorsPolicy");
+
+            app.UseSwagger();
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "Matthew Allen Services");
+                options.RoutePrefix = string.Empty;
             });
         }
     }
