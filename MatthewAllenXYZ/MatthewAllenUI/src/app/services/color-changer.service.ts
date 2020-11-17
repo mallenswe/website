@@ -14,7 +14,7 @@ export class ColorChangerService {
   ) { }
 
   public getColor(): Observable<Array<string>> {
-    const URL = `${environment.baseURL}/${environment.colorChanger}`;
+    const URL = `${environment.baseURL}/${environment.colorChangerController}`;
     return this.httpClient.get<Array<string>>(URL).pipe(
       map(
       (response: Array<string>) => response

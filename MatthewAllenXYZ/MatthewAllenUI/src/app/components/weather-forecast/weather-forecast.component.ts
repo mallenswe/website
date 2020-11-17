@@ -22,7 +22,6 @@ export class WeatherForecastComponent implements OnInit {
 
   public getWeatherForecast(): void {
     this.weatherForecastService.getWeatherForecast().subscribe(response => {
-      console.log('Connected Weather Forecast Response: ', response);
       this.weatherForecast = response;
     })
   }

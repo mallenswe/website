@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
   baseURL: 'https://matthewallenservices.azurewebsites.net',
-  weatherController: 'WeatherForecast',
-  colorChanger: 'ColorChanger'
+  weatherForecastController: 'WeatherForecast',
+  colorChangerController: 'ColorChanger',
+  personController: 'Person'
 };

@@ -45,6 +45,9 @@
     </svg>
 
   </div>
+  <button (click)="togglePersonFinder()" *ngIf="!showPersonFinder" [routerLink]="['/personfinder']">Person Finder</button>
+  <button (click)="togglePersonFinder()" *ngIf="showPersonFinder" [routerLink]="['/']">Home</button>
+  <router-outlet></router-outlet>
   <app-weather-forecast></app-weather-forecast>
   <!-- Resources -->
   <h2>Resources</h2>
@@ -236,7 +239,3 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-
-
-<router-outlet></router-outlet>

@@ -11,10 +11,14 @@ namespace MatthewAllenServices.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+
     public class ColorChangerController : ControllerBase
     {
         private readonly ILogger<ColorChangerController> _logger;
-
+        /// <summary>
+        /// Logger for ColorChanger Controller
+        /// </summary>
+        /// <param name="logger"></param>
         public ColorChangerController(ILogger<ColorChangerController> logger)
         {
             _logger = logger;

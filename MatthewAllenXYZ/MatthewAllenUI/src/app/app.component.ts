@@ -9,7 +9,7 @@ import { ColorChangerService } from './services/color-changer.service';
 
 export class AppComponent {
   title: string = 'Matthew Allen';
-
+  public showPersonFinder: boolean = false;
 
   constructor(
     private colorChangerService: ColorChangerService
@@ -21,5 +21,9 @@ export class AppComponent {
       const commaSeperatedColor = color.join(',');
       highlightCard.style.backgroundColor = `rgb(${commaSeperatedColor})`;
     })
+  }
+
+  public togglePersonFinder(): void {
+    this.showPersonFinder = !this.showPersonFinder;
   }
 }

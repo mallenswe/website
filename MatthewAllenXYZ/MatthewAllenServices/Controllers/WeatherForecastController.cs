@@ -17,7 +17,10 @@ namespace MatthewAllenServices.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
-
+        /// <summary>
+        /// Logger for WeatherForecast Controller
+        /// </summary>
+        /// <param name="logger"></param>
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {
             _logger = logger;

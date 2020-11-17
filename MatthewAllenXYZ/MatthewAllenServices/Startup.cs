@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using MatthewAllenServices.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -59,6 +60,11 @@ namespace MatthewAllenServices
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                //LocalEnvironment localEnvironment = new LocalEnvironment();
+                LocalEnvironment.DataSource = Configuration["AdventureWorks:DataSource"];
+                LocalEnvironment.InitialCatalog = Configuration["AdventureWorks:InitialCatalog"];
+                LocalEnvironment.UserID = Configuration["AdventureWorks:UserID"];
+                LocalEnvironment.Password = Configuration["AdventureWorks:Password"];
             }
 
             app.UseHttpsRedirection();
