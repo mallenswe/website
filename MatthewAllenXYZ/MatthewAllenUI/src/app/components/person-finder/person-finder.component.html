@@ -1,53 +1,60 @@
 <div class="component">
-    <div>
-        <label for="finderPerson">Person Business Entity ID: </label>
-        <input type="text" name="findPerson" id="findPerson" [(ngModel)]="findBusinessEntityID">
-        <button (click)="findPerson($event)">Search</button>
+  <div class="person-search">
+    <label for="finderPerson">Person Business Entity ID: </label>
+    <input
+      type="text"
+      name="findPerson"
+      id="findPerson"
+      [(ngModel)]="findBusinessEntityID"
+    />
+    <button (click)="findPerson($event)">Search</button>
+  </div>
+  <div *ngIf="searchedPerson">
+    <div class="card-person">
+      <div class="card-column">
+        <p class="data-section">
+          <span>Business ID</span>
+          <span class="data-actual">{{ searchedPerson.businessEntityID }}</span>
+        </p>
+        <p class="data-section">
+          <span>Name</span>
+          <span class="data-actual">{{ searchedPerson.title }} {{ searchedPerson.firstName }} {{ searchedPerson.lastName }}</span>
+        </p>
+        <p class="data-section">
+          <span>Phone Number</span>
+          <span class="data-actual"><span>{{ searchedPerson.phoneType }}: </span>{{ searchedPerson.phoneNumber }}</span>
+        </p>
+        <p class="data-section">
+          <span>Email</span>
+          <span class="data-actual">{{ searchedPerson.emailAddress }}</span>
+        </p>
+      </div>
+      <div class="card-column">
+        <p class="data-section">
+          <span>AddressLine1</span>
+          <span class="data-actual">{{ searchedPerson.addressLine1 }}</span>
+        </p>
+        <p class="data-section">
+          <span>AddressLine2</span>
+          <span class="data-actual">{{ searchedPerson.addressLine2 }}</span>
+        </p>
+        <p class="data-section">
+          <span>City</span>
+          <span class="data-actual">{{ searchedPerson.city }}</span>
+        </p>
+        <p class="data-section">
+          <span>Postal Code</span>
+          <span class="data-actual">{{ searchedPerson.postalCode }}</span>
+        </p>
+        <p class="data-section">
+          <span>State</span>
+          <span class="data-actual">{{ searchedPerson.stateName }}</span>
+        </p>
+        <p class="data-section">
+          <span>Country</span>
+          <span class="data-actual">{{ searchedPerson.countryName }}</span>
+        </p>
+      </div>
     </div>
-    <div *ngIf="searchedPerson">
-        <p>
-            <span>Business ID</span>
-            <span>{{ searchedPerson.businessEntityID }}</span>
-          </p>
-          <p>
-            <span>Title</span>
-            <span>{{ searchedPerson.title }}</span>
-          </p>
-          <p>
-            <span>First Name</span>
-            <span>{{ searchedPerson.firstName }}</span>
-          </p>
-          <p>
-            <span>Phone Number</span>
-            <span><span>{{searchedPerson.phoneType}}: </span>{{ searchedPerson.phoneNumber }}</span>
-          </p>
-          <p>
-            <span>Email</span>
-            <span>{{ searchedPerson.emailAddress }}</span>
-          </p>
-          <p>
-            <span>AddressLine1</span>
-            <span>{{ searchedPerson.addressLine1 }}</span>
-          </p>
-          <p>
-            <span>AddressLine2</span>
-            <span>{{ searchedPerson.addressLine2 }}</span>
-          </p>
-          <p>
-            <span>City</span>
-            <span>{{ searchedPerson.city }}</span>
-          </p>
-          <p>
-            <span>Postal Code</span>
-            <span>{{ searchedPerson.postalCode }}</span>
-          </p>
-          <p>
-            <span>State</span>
-            <span>{{ searchedPerson.stateName }}</span>
-          </p>
-          <p>
-            <span>Country</span>
-            <span>{{ searchedPerson.countryName }}</span>
-          </p>
-    </div>
+  </div>
 </div>
