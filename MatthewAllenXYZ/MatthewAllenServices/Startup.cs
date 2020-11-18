@@ -59,6 +59,9 @@ namespace MatthewAllenServices
                 //LocalEnvironment.UserID = Configuration["AdventureWorks:UserID"];
                 //LocalEnvironment.Password = Configuration["AdventureWorks:Password"];
                 LocalEnvironment.ConnectionString = Configuration["AdventureWorks:ConnectionString"];
+            } else
+            {
+                LocalEnvironment.ConnectionString = Configuration.GetConnectionString("ConnectionString");
             }
 
             app.UseHttpsRedirection();

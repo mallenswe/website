@@ -16,7 +16,7 @@ namespace MatthewAllenServices.Controllers
     [ApiController]
     public class PersonController : ControllerBase
     {
-        private string connectionString = string.IsNullOrEmpty(LocalEnvironment.ConnectionString) ? Environment.GetEnvironmentVariable("ConnectionString") : LocalEnvironment.ConnectionString;
+        private string connectionString = LocalEnvironment.ConnectionString;
         /// <summary>
         /// Gets a Persons details based on the businessEntityID
         /// </summary>
