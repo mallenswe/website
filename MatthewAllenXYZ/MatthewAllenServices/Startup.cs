@@ -49,22 +49,16 @@ namespace MatthewAllenServices
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            //app.UseCors(options =>
-            //{
-            //    options.WithOrigins("http://localhost:4200")
-            //    .AllowAnyMethod()
-            //    .AllowAnyHeader();
-            //});
             app.UseCors("CorsPolicy");
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                //LocalEnvironment localEnvironment = new LocalEnvironment();
-                LocalEnvironment.DataSource = Configuration["AdventureWorks:DataSource"];
-                LocalEnvironment.InitialCatalog = Configuration["AdventureWorks:InitialCatalog"];
-                LocalEnvironment.UserID = Configuration["AdventureWorks:UserID"];
-                LocalEnvironment.Password = Configuration["AdventureWorks:Password"];
+                //LocalEnvironment.DataSource = Configuration["AdventureWorks:DataSource"];
+                //LocalEnvironment.InitialCatalog = Configuration["AdventureWorks:InitialCatalog"];
+                //LocalEnvironment.UserID = Configuration["AdventureWorks:UserID"];
+                //LocalEnvironment.Password = Configuration["AdventureWorks:Password"];
+                LocalEnvironment.ConnectionString = Configuration["AdventureWorks:ConnectionString"];
             }
 
             app.UseHttpsRedirection();
@@ -82,7 +76,6 @@ namespace MatthewAllenServices
             app.UseSwaggerUI(options =>
             {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "Matthew Allen Services");
-                //options.RoutePrefix = string.Empty;
             });
         }
     }

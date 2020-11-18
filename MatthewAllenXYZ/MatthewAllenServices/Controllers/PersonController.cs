@@ -16,6 +16,7 @@ namespace MatthewAllenServices.Controllers
     [ApiController]
     public class PersonController : ControllerBase
     {
+        private string connectionString = string.IsNullOrEmpty(LocalEnvironment.ConnectionString) ? Environment.GetEnvironmentVariable("ConnectionString") : LocalEnvironment.ConnectionString;
         /// <summary>
         /// Gets a Persons details based on the businessEntityID
         /// </summary>
@@ -29,12 +30,13 @@ namespace MatthewAllenServices.Controllers
             {
                 SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
                 Person person = new Person();
-                builder.DataSource = LocalEnvironment.DataSource;
-                builder.InitialCatalog = LocalEnvironment.InitialCatalog;
-                builder.UserID = LocalEnvironment.UserID;
-                builder.Password = LocalEnvironment.Password;
+                
+                //builder.DataSource = LocalEnvironment.DataSource;
+                //builder.InitialCatalog = LocalEnvironment.InitialCatalog;
+                //builder.UserID = LocalEnvironment.UserID;
+                //builder.Password = LocalEnvironment.Password;
 
-                using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     Debug.WriteLine("\nQuery data example: ");
                     Debug.WriteLine("=======================\n");
