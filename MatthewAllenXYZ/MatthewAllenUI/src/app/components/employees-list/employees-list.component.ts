@@ -10,18 +10,18 @@ import { PersonService } from '../../services/person.service';
 })
 export class EmployeesListComponent implements OnInit {
   
-  public personList$: Observable<Person[]>;
+  public employeeList$: Observable<Person[]>;
 
   constructor(
     private personService: PersonService
   ) { }
 
   ngOnInit(): void {
-    this.personList$ = this.getPersonList();
+    this.employeeList$ = this.getEmployeeList();
   }
 
-  public getPersonList(personCount: number = 10): Observable<Person[]> {
-    return this.personService.getPersonListByCount(personCount)
+  public getEmployeeList(personCount: number = 10): Observable<Person[]> {
+    return this.personService.getEmployeeListByCount(personCount)
   }
 
 }
