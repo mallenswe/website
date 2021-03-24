@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
 import { PersonFinderComponent } from './components/person-finder/person-finder.component';
+import { EmployeesListComponent } from './components/employees-list/employees-list.component';
 
 const routes: Routes = [
   {path: 'Personfinder', component: PersonFinderComponent},
-  {path: 'Employees', component: PersonFinderComponent},
+  {path: 'Employees', component: EmployeesListComponent},
   {path: '', redirectTo: '/', pathMatch: 'full'}
 ];
 

@@ -1,0 +1,5 @@
+<div *ngIf="personList$ | async as personList">
+    <div *ngFor="let person of personList">
+        <p>{{person.firstName}} {{person.lastName}}</p>
+    </div>
+</div>
