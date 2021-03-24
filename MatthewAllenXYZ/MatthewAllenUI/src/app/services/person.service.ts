@@ -17,4 +17,9 @@ export class PersonService {
     const URL = `${environment.baseURL}/${environment.personController}?businessEntityID=${businessEntityID}`;
     return this.httpClient.get<Person>(URL);
   }
+
+  public getPersonListByCount(personCount: number): Observable<Array<Person>> {
+    const URL = `${environment.baseURL}/${environment.personController}/GetPersonList?personCount=${personCount}`;
+    return this.httpClient.get<Array<Person>>(URL);
+  }
 }

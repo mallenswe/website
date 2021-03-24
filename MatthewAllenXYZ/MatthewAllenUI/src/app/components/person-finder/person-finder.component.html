@@ -1,13 +1,20 @@
 <div class="component">
   <div class="person-search">
-    <label for="finderPerson">Person Business Entity ID: </label>
-    <input
-      type="text"
-      name="findPerson"
-      id="findPerson"
-      [(ngModel)]="findBusinessEntityID"
-    />
-    <button (click)="findPerson($event)">Search</button>
+    <div>
+      <label for="finderPerson" id="findPersonLabel">Person Business Entity ID: </label>
+    </div>
+    <div>
+      <input
+        type="text"
+        name="findPerson"
+        id="findPerson"
+        [(ngModel)]="findBusinessEntityID"
+      />
+      <small>Examples: 13</small>
+    </div>
+    <div>
+      <button (click)="findPerson($event)">Search</button>
+    </div>
   </div>
   <div *ngIf="searchedPerson">
     <div class="card-person">
