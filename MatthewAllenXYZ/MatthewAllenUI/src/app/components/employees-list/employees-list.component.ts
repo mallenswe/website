@@ -20,8 +20,8 @@ export class EmployeesListComponent implements OnInit {
     this.employeeList$ = this.getEmployeeList();
   }
 
-  public getEmployeeList(personCount: number = 10): Observable<Person[]> {
-    return this.personService.getEmployeeListByCount(personCount)
+  public getEmployeeList(employeeAmount: number = 10): Observable<Person[]> {
+    return this.personService.getEmployeeListByCount(employeeAmount)
   }
 
 }

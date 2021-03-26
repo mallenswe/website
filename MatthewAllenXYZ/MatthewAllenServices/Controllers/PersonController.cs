@@ -101,17 +101,17 @@ namespace MatthewAllenServices.Controllers
         /// <summary>
         /// Gets a list of people by person count
         /// </summary>
-        /// <param name="personCount"></param>
-        /// <returns>List of Person</returns>
+        /// <param name="employeeAmount"></param>
+        /// <returns>List of Employees</returns>
         [HttpGet]
-        [Route("GetPersonList")]
-        public List<Person> GetPersonList([FromQuery] int personCount)
+        [Route("GetEmployeeList")]
+        public List<Person> GetEmployeeList([FromQuery] int employeeAmount)
         {
 
             try
             {
                 SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-                List<Person> personList = new List<Person>();
+                List<Person> employeeList = new List<Person>();
 
                 //builder.DataSource = LocalEnvironment.DataSource;
                 //builder.InitialCatalog = LocalEnvironment.InitialCatalog;
@@ -123,11 +123,11 @@ namespace MatthewAllenServices.Controllers
                     Debug.WriteLine("\nQuery data example: ");
                     Debug.WriteLine("=======================\n");
                     connection.Open();
-                    SqlCommand command = new SqlCommand("GetPersonList", connection)
+                    SqlCommand command = new SqlCommand("GetEmployeeList", connection)
                     {
                         CommandType = System.Data.CommandType.StoredProcedure
                     };
-                    command.Parameters.AddWithValue("@PersonCount", personCount);
+                    command.Parameters.AddWithValue("@EmployeeAmount", employeeAmount);
 
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -151,30 +151,13 @@ namespace MatthewAllenServices.Controllers
                                 person.StateName = reader["StateName"].ToString();
                                 person.CountryName = reader["CountryName"].ToString();
 
-                                personList.Add(person);
+                                employeeList.Add(person);
                             }
                         }
                     }
                 }
 
-                Person personDefault = new Person
-                {
-                    BusinessEntityID = 1,
-                    Title = "Mr.",
-                    FirstName = "Matthew",
-                    LastName = "Allen",
-                    PhoneNumber = "999-999-9999",
-                    PhoneType = "Cell",
-                    EmailAddress = "1st Main Street",
-                    AddressLine1 = "Suite 343",
-                    AddressLine2 = "",
-                    City = "Redmond",
-                    PostalCode = "98052",
-                    StateName = "Washington",
-                    CountryName = "United States",
-                };
-
-                return personList;
+                return employeeList;
             }
             catch (SqlException e)
             {
