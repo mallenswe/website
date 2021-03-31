@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { EmployeeService } from 'src/app/services/employee.service';
+import * as fromStore from '../../store';
+
 import { Person } from '../../models/person.model';
-import { PersonService } from '../../services/person.service';
 
 @Component({
   selector: 'app-employees-list',
@@ -11,17 +14,20 @@ import { PersonService } from '../../services/person.service';
 export class EmployeesListComponent implements OnInit {
   
   public employeeList$: Observable<Person[]>;
+  public employeesList$: Observable<Person[]>;
 
   constructor(
-    private personService: PersonService
+    private employeeService: EmployeeService,
+    private store: Store<fromStore.EmployeesState>
   ) { }
 
   ngOnInit(): void {
     this.employeeList$ = this.getEmployeeList();
+    this.employeesList$ = this.store.select(fromStore.getEmployeesList);
   }
 
   public getEmployeeList(employeeAmount: number = 10): Observable<Person[]> {
-    return this.personService.getEmployeeListByCount(employeeAmount)
+    return this.employeeService.getEmployeeListByCount(employeeAmount)
   }
 
 }

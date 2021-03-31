@@ -12,13 +12,17 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { reducers, effects } from './store';
+
+// services
+import * as fromServices from './services';
 
 @NgModule({
   declarations: [
     AppComponent,
     WeatherForecastComponent,
     PersonFinderComponent,
-    EmployeesListComponent
+    EmployeesListComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,8 +30,8 @@ import { environment } from '../environments/environment';
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([]),
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot(effects),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [],
