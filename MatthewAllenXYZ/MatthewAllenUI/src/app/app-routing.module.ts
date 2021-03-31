@@ -4,9 +4,9 @@ import { PersonFinderComponent } from './components/person-finder/person-finder.
 import { EmployeesListComponent } from './components/employees-list/employees-list.component';
 
 const routes: Routes = [
+  {path: '', redirectTo: '/', pathMatch: 'full'},
   {path: 'Personfinder', component: PersonFinderComponent},
   {path: 'Employees', component: EmployeesListComponent},
-  {path: '', redirectTo: '/', pathMatch: 'full'}
 ];
 
 @NgModule({
