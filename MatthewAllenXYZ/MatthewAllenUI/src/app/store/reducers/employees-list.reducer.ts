@@ -18,6 +18,7 @@ export function reducer(
     state = initialState,
     action: fromEmployeesList.EmployeesListAction
 ): EmployeesListState {
+    console.log('employees-list reducer state: ',state, 'action: ', action);
     switch(action.type) {
         case fromEmployeesList.LOAD_EMPLOYEES_LIST: {
             return {
@@ -33,11 +34,12 @@ export function reducer(
             const entities = employees.reduce((entities: {[businessEntityID: number]: Person}, person: Person) => {
                 return {
                     ...entities,
-                    [person.BusinessEntityID]: person
+                    [person.businessEntityID]: person
                 }
             }, {
                 ...state.entities
             });
+            
             return {
                 ...state,
                 loading: false,
@@ -53,6 +55,43 @@ export function reducer(
                 loaded: false
             }
         }
+
+        case fromEmployeesList.UPDATE_EMPLOYEES_LIST: {
+            return {
+                ...state,
+                loading: true
+            }
+        }
+        case fromEmployeesList.UPDATE_EMPLOYEES_LIST_SUCCESS: {
+            const entities = {};
+            const currentEntities = {...state.entities};
+
+            for(let [index, person] of action.payload.entries()) {
+                if(currentEntities[person.businessEntityID]){
+                    entities[person.businessEntityID] = currentEntities[person.businessEntityID];
+                } else {
+                    entities[person.businessEntityID] = person;
+                }
+            }
+            
+            console.log('UPDATE_EMPLOYEES_LIST_SUCCESS entities: ', entities);
+            return {
+                ...state,
+                loading: false,
+                loaded: true,
+                entities
+            }
+        }
+
+        case fromEmployeesList.UPDATE_EMPLOYEES_LIST_FAIL: {
+            return {
+                ...state,
+                loaded: false,
+                loading: false
+            }
+        }
+
+        default: return state;
     }
 }
 

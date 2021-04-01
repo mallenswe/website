@@ -1,15 +1,15 @@
 export class Person {
-    BusinessEntityID: number;
-    Title: string;
-    FirstName: string;
-    LastName: string;
-    PhoneNumber: string;
-    PhoneType: string;
-    EmailAddress: string;
-    AddressLine1: string;
-    AddressLine2: string;
-    City: string;
-    PostalCode: string;
-    StateName: string;
-    CountryName: string;
+    businessEntityID: number;
+    title: string;
+    firstName: string;
+    lastName: string;
+    phoneNumber: string;
+    phoneType: string;
+    emailAddress: string;
+    addressLine1: string;
+    addressLine2: string;
+    city: string;
+    postalCode: string;
+    stateName: string;
+    countryName: string;
 }

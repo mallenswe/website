@@ -17,13 +17,28 @@ export class EmployeesListEffects {
     loadEmployeesList$ = this.actions$
         .pipe(
             ofType(employeesListActions.LOAD_EMPLOYEES_LIST)
-            ,map((action: employeesListActions.LoadEmployeesList) => action.payload)
-            ,switchMap((employeeAmount) => {
+            , map((action: employeesListActions.LoadEmployeesList) => action.payload)
+            , switchMap((employeeAmount) => {
                 console.log(`loadEmployeesList$ switchMap employeeAmount: `, employeeAmount);
                 return this.employeeService.getEmployeeListByCount(employeeAmount)
                     .pipe(
                         map(employeesList => new employeesListActions.LoadEmployeesListSuccess(employeesList))
-                        ,catchError(error => of(new employeesListActions.LoadEmployeesListFail(error)))
+                        , catchError(error => of(new employeesListActions.LoadEmployeesListFail(error)))
+                    )
+            })
+        );
+
+    @Effect()
+    updateEmployeesList$ = this.actions$
+        .pipe(
+            ofType(employeesListActions.UPDATE_EMPLOYEES_LIST)
+            , map((action: employeesListActions.UpdateEmployeesList) => action.payload)
+            , switchMap((employeeAmount) => {
+                console.log(`updatemployeesList$ switchMap employeeAmount: `, employeeAmount);
+                return this.employeeService.getEmployeeListByCount(employeeAmount)
+                    .pipe(
+                        map(employeesList => new employeesListActions.UpdateEmployeesListSuccess(employeesList))
+                        , catchError(error => of(new employeesListActions.UpdateEmployeesListFail(error)))
                     )
             })
         );
