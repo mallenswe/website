@@ -12,6 +12,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { reducers, effects } from './store';
+import { BasicTableComponent } from './presentation/basic-table/basic-table.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { reducers, effects } from './store';
     AppComponent,
     WeatherForecastComponent,
     PersonFinderComponent,
+    BasicTableComponent,
   ],
   imports: [
     BrowserModule,

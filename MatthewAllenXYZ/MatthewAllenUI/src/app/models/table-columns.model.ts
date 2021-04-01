@@ -1,5 +1,6 @@
 export class TableColumns {
     id?: number;
-    name?: string;
+    title?: string;
+    property?: string;
     position?: number;
 }

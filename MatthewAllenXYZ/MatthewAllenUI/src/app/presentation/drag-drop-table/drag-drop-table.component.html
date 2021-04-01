@@ -1,0 +1,24 @@
+<p>drag-drop-table works!</p>
+<div *ngFor="let item of data">
+  <p>{{ item.businessEntityID }}: {{ item.firstName }} {{ item.lastName }}</p>
+</div>
+
+<table
+  cdkDropList
+  cdkDropListOrientation="horizontal"
+  class="drag-drop-table"
+  (cdkDropListDropped)="drop($event)"
+>
+  <thead>
+    <tr>
+      <th class="header" *ngFor="let header of columns" cdkDrag>{{ header.title }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of data">
+      <td class="cell">{{ item.firstName }}</td>
+      <td class="cell">{{ item.lastName }}</td>
+      <td class="cell">{{ item.emailAddress }}</td>
+    </tr>
+  </tbody>
+</table>

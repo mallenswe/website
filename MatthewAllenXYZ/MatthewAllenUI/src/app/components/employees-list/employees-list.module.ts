@@ -11,6 +11,8 @@ import { EmployeesListComponent } from './employees-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { EmployeesListGuard } from './employees-list.guard';
+import { DragDropTableComponent } from 'src/app/presentation/drag-drop-table/drag-drop-table.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 export const ROUTES: Routes = [
   {
@@ -27,10 +29,11 @@ export const ROUTES: Routes = [
     FormsModule,
     RouterModule.forChild(ROUTES),
     StoreModule.forFeature('employees', reducers),
-    EffectsModule.forFeature(effects)
+    EffectsModule.forFeature(effects),
+    DragDropModule
   ],
   providers: [fromServices.EmployeeService],
-  declarations: [EmployeesListComponent],
-  exports: [EmployeesListComponent]
+  declarations: [EmployeesListComponent, DragDropTableComponent],
+  exports: [EmployeesListComponent, DragDropTableComponent]
 })
 export class EmployeesListModule { }
