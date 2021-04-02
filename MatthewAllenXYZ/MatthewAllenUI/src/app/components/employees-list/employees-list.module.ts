@@ -13,6 +13,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { EmployeesListGuard } from './employees-list.guard';
 import { DragDropTableComponent } from 'src/app/presentation/drag-drop-table/drag-drop-table.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 export const ROUTES: Routes = [
   {
@@ -30,7 +32,9 @@ export const ROUTES: Routes = [
     RouterModule.forChild(ROUTES),
     StoreModule.forFeature('employees', reducers),
     EffectsModule.forFeature(effects),
-    DragDropModule
+    DragDropModule,
+    MatIconModule,
+    MatButtonModule,
   ],
   providers: [fromServices.EmployeeService],
   declarations: [EmployeesListComponent, DragDropTableComponent],

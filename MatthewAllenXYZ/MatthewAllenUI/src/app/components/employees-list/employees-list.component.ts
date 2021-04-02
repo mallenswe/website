@@ -26,7 +26,8 @@ export class EmployeesListComponent implements OnInit {
     this.employeesLayout$ = [
       { id: 1, title: 'First Name', property: 'firstName', position: 0 },
       { id: 2, title: 'Last Name', property: 'lastName', position: 1 },
-      { id: 3, title: 'Email Address', property: 'emailAddress', position: 2 }
+      { id: 3, title: 'Email Address', property: 'emailAddress', position: 2 },
+      { id: 4, title: 'City', property: 'city', position: 3 }
     ]
   }
 

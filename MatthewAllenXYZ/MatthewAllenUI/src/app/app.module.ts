@@ -15,6 +15,7 @@ import { reducers, effects } from './store';
 import { BasicTableComponent } from './presentation/basic-table/basic-table.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

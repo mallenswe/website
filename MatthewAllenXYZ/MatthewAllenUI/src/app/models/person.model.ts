@@ -1,4 +1,4 @@
-export class Person {
+export interface Person {
     businessEntityID: number;
     title: string;
     firstName: string;

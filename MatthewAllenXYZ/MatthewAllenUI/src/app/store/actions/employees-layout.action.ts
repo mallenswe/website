@@ -20,7 +20,7 @@ export class LoadEmployeesLayoutFail implements Action {
 
 export class LoadEmployeesLayoutSuccess implements Action {
     readonly type = LOAD_EMPLOYEES_LAYOUT_SUCCESS;
-    constructor(public payload: EmployeeLayout) {}
+    constructor(public payload: EmployeeLayout[]) {}
 }
 
 // create employees layout

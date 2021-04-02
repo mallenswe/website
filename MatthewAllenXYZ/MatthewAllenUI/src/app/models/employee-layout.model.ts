@@ -1,6 +1,6 @@
 import { TableColumns } from "./table-columns.model";
 
-export class EmployeeLayout {
+export interface EmployeeLayout {
     id?: number;
     name?: string;
     layout?: TableColumns[]

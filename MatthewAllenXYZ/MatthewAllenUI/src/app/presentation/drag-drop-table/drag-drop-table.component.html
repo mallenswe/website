@@ -1,8 +1,6 @@
-<p>drag-drop-table works!</p>
-<div *ngFor="let item of data">
-  <p>{{ item.businessEntityID }}: {{ item.firstName }} {{ item.lastName }}</p>
+<div>
+    <button (click)="updateColumns()">Update</button>
 </div>
-
 <table
   cdkDropList
   cdkDropListOrientation="horizontal"
@@ -11,14 +9,21 @@
 >
   <thead>
     <tr>
-      <th class="header" *ngFor="let header of columns" cdkDrag>{{ header.title }}</th>
+      <th class="header" *ngFor="let header of columns" cdkDrag>
+        <p class="title">{{ header.title }}</p>
+        <div class="search-sort">
+          <input type="text" class="search" placeholder="Filter {{header.title}}..." (input)="filterTable($event, header.property)">
+          <button mat-button class="sort" (click)="sortTable($event, header.property)">
+            <mat-icon aria-hidden="false" aria-label="Example code icon" class="code-icon">code</mat-icon>
+          </button>
+        </div>
+        
+      </th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of data">
-      <td class="cell">{{ item.firstName }}</td>
-      <td class="cell">{{ item.lastName }}</td>
-      <td class="cell">{{ item.emailAddress }}</td>
+    <tr *ngFor="let item of data; index as i; last as isLast" [ngClass]="{'last-row': isLast}">
+      <td class="cell" *ngFor="let header of columns">{{ item[header.property] }}</td>
     </tr>
   </tbody>
 </table>
