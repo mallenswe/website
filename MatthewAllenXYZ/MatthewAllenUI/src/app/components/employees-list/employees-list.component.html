@@ -1,26 +1,31 @@
-<div>
-  <div class="employees-search">
-    <div>
+<div class="employees-component">
+  <div class="search-container">
+    <!-- <div>
       <label for="employeeAmount" id="employeeAmountLabel"
         >Employee Amount:
       </label>
-    </div>
-    <div>
-      <input
-        type="text"
-        name="employeeAmount"
-        id="employeeAmount"
-        [(ngModel)]="getEmployeeAmount"
-      />
-      <small>Examples: 10</small>
-    </div>
-    <div>
-      <button (click)="getEmployeesList($event)">Search</button>
-    </div>
+    </div> -->
+    <fieldset>
+      <legend>Employee Amount</legend>
+      <div>
+        <small>Examples: 10, 15, 30</small>
+      </div>
+      <div class="employees-search">
+        <input
+          type="text"
+          name="employeeAmount"
+          id="employeeAmount"
+          [(ngModel)]="getEmployeeAmount"
+        />
+        <button (click)="getEmployeesListSearch($event)">Search</button>
+      </div>
+    </fieldset>
   </div>
   <app-drag-drop-table
     [data]="employeesList$ | async"
     [columns]="employeesLayout$"
     (modifiedColumns)="onModifiedColumns($event)"
+    (filterTableEvent)="onFilterTable($event)"
+    (sortTableEvent)="onSortTable($event)"
   ></app-drag-drop-table>
 </div>

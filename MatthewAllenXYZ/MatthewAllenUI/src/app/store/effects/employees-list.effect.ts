@@ -19,6 +19,7 @@ export class EmployeesListEffects {
             ofType(employeesListActions.LOAD_EMPLOYEES_LIST)
             , map((action: employeesListActions.LoadEmployeesList) => action.payload)
             , switchMap((employeeAmount) => {
+                console.log(`loadEmployeesList$ switchMap employeeAmount: `, employeeAmount);
                 return this.employeeService.getEmployeeListByCount(employeeAmount)
                     .pipe(
                         map(employeesList => new employeesListActions.LoadEmployeesListSuccess(employeesList))

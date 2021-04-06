@@ -47,12 +47,6 @@ export class UpdateEmployeesListSuccess implements Action {
 }
 
 
-// Show Employee List
-export class ShowEmployeesList implements Action {
-    readonly type = SHOW_EMPLOYEES;
-    constructor(public payload: Person[]) {}
-}
-
 // action types
 export type EmployeesListAction =
     | LoadEmployeesList
@@ -61,4 +55,3 @@ export type EmployeesListAction =
     | UpdateEmployeesList
     | UpdateEmployeesListFail
     | UpdateEmployeesListSuccess
-    | ShowEmployeesList

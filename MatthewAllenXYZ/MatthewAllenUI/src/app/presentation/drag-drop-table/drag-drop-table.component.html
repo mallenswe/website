@@ -1,29 +1,67 @@
-<div>
-    <button (click)="updateColumns()">Update</button>
+<div class="button-container">
+  <button
+    mat-button
+    class="update-button"
+    (click)="updateColumns()"
+    *ngIf="savedCollection"
+  >
+    Update
+  </button>
+  <button
+    mat-button
+    class="save-button"
+    (click)="saveColumns()"
+    *ngIf="!savedCollection"
+  >
+    Save
+  </button>
 </div>
-<table
-  cdkDropList
-  cdkDropListOrientation="horizontal"
-  class="drag-drop-table"
-  (cdkDropListDropped)="drop($event)"
->
-  <thead>
-    <tr>
-      <th class="header" *ngFor="let header of columns" cdkDrag>
-        <p class="title">{{ header.title }}</p>
-        <div class="search-sort">
-          <input type="text" class="search" placeholder="Filter {{header.title}}..." (input)="filterTable($event, header.property)">
-          <button mat-button class="sort" (click)="sortTable($event, header.property)">
-            <mat-icon aria-hidden="false" aria-label="Example code icon" class="code-icon">code</mat-icon>
-          </button>
-        </div>
-        
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of data; index as i; last as isLast" [ngClass]="{'last-row': isLast}">
-      <td class="cell" *ngFor="let header of columns">{{ item[header.property] }}</td>
-    </tr>
-  </tbody>
-</table>
+<div class="table-container">
+  <table
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    class="drag-drop-table"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <thead>
+      <tr>
+        <th *ngFor="let header of columns" cdkDrag>
+          <div class="header">
+            <p class="title">{{ header.title }}</p>
+            <p class="title" *cdkDragPreview>{{ header.title }}</p>
+            <div class="search-sort">
+              <input
+                type="text"
+                class="search"
+                placeholder="Filter {{ header.title }}..."
+                (input)="filterTable($event, header.property)"
+              />
+              <button
+                mat-button
+                class="sort"
+                (click)="sortTable($event, header.property)"
+              >
+                <mat-icon
+                  aria-hidden="false"
+                  aria-label="Example code icon"
+                  class="code-icon"
+                  >code</mat-icon
+                >
+              </button>
+            </div>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let item of data; index as i; last as isLast"
+        [ngClass]="{ 'last-row': isLast }"
+      >
+        <td class="cell" *ngFor="let header of columns">
+          {{ item[header.property] }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -12,21 +12,29 @@ export class DragDropTableComponent implements OnInit {
   @Input() data: any;
   @Input() columns: TableColumns[];
   @Output() modifiedColumns = new EventEmitter<TableColumns[]>();
+  @Output() filterTableEvent = new EventEmitter<{value: string, property: string}>();
+  @Output() sortTableEvent = new EventEmitter<{value: string, property: string}>();
 
   public columnHeaders: String[];
+  public savedCollection: boolean = false;
 
   ngOnInit() {
     this.columnHeaders = this.columns.map(item => item.title);
   }
 
   updateColumns(): void {
-    console.log('columns: ', this.columns);
+    console.log('updateColumns: ', this.columns);
+    this.modifiedColumns.emit();
+  }
+
+  saveColumns(): void {
+    console.log('saveColumns: ', this.columns)
     this.modifiedColumns.emit();
   }
 
 
-
   drop(event: CdkDragDrop<string[]>) {
+    console.log('event: ', event);
     moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
 
     // reassign position
@@ -51,12 +59,16 @@ export class DragDropTableComponent implements OnInit {
 
   }
 
-  filterTable(event, headerProperty) {
-    console.log('filterTable event: ', event.target.value, ' headerProperty: ', headerProperty);
+  filterTable(event, property) {
+    const value = event.target.value;
+    console.log('filterTable event: ', value, ' property: ', property);
+    this.filterTableEvent.emit({value, property});
   }
 
-  sortTable(event, headerProperty) {
-    console.log('sortTable event: ', event, ' headerProperty: ', headerProperty);
+  sortTable(event, property) {
+    const value = event.target.value;
+    console.log('sortTable event: ', event, ' property: ', property);
+    this.sortTableEvent.emit({value,property})
   }
 
 

@@ -31,12 +31,21 @@ export class EmployeesListComponent implements OnInit {
     ]
   }
 
-  public getEmployeesList(event): void {
-    console.log('getEmployeesList event: ', this.getEmployeeAmount);
+  public getEmployeesListSearch(event): void {
+    console.log('getEmployeesListSearch event: ', this.getEmployeeAmount);
     this.store.dispatch(new fromStore.UpdateEmployeesList(this.getEmployeeAmount));
   }
 
   public onModifiedColumns(event: TableColumns[]) {
     console.log('onModifiedColumns: ', event);
+  }
+
+  public onFilterTable(event: {value, property}) {
+    console.log('employees-list onFilterTable event: ', event);
+    this.store.select(fromStore.getEmployeesListFiltered, {...event}).subscribe(result => result)
+  }
+
+  public onSortTable(event: {value, property}) {
+    console.log('employees-list onSortTable event: ', event);
   }
 }
