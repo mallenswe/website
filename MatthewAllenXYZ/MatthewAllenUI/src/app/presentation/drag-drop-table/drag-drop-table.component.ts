@@ -26,7 +26,6 @@ export class DragDropTableComponent implements OnInit {
 
 
   ngOnInit() {
-    // console.log('dragdrop init')
     this.columnHeaders = this.columns.map(item => item.title);
     this.sorters = this.setSorters();
   }

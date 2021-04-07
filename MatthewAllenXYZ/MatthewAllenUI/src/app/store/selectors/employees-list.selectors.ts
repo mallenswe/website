@@ -15,12 +15,7 @@ export const getEmployeesListSort = createSelector(getEmployeesListState, fromEm
 export const getEmployeesListEntities = createSelector(getEmployeesListState, fromEmployeesList.getEmployeesListEntities);
 
 export const getEmployeesList = createSelector(getEmployeesListEntities, getEmployeesListFilter, getEmployeesListSort, (entities, filter, sort) => {
-    // console.log('getEmployeesList entities: ', entities);
     const dataMap = Object.keys(entities).map(businessEntityId => entities[parseInt(businessEntityId, 10)]);
-    // console.log(' dataMap: ', dataMap);
-    // console.log('getEmployeesListSort Sort: ', sort);
-    // console.log(' filter: ', filter, Object.keys(filter).length);
-    // console.log(' sort: ', sort);
 
     let filteredData: Person[];
 
@@ -28,7 +23,6 @@ export const getEmployeesList = createSelector(getEmployeesListEntities, getEmpl
         filteredData = dataMap.filter(person => {
             let filterMatch = true;
             for (let property in filter) {
-                // console.log('dataMap.filter proprty in filter: ', property, ' person[property]: ', person[property]);
                 if ((person[property] as string).toLowerCase().includes((filter[property] as string).toLowerCase())) {
                     continue;
                 } else {
@@ -73,10 +67,7 @@ export const getEmployeesList = createSelector(getEmployeesListEntities, getEmpl
                 break;
             }
         }
-        // console.log('compareFunction: ', compareFunction);
-        // console.time('Sort');
         filteredData.sort((a,b) => compareFunction(a, b));
-        // console.timeEnd('Sort');
     }
 
     return filteredData;

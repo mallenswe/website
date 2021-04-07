@@ -41,7 +41,6 @@ export class EmployeesListComponent implements OnInit {
   }
 
   public onFilterTable(event: ValueProperty) {
-    // this.store.select(fromStore.getEmployeesListFiltered, {...event}).subscribe(result => result)
     this.store.dispatch(new fromStore.FilterEmployeesList({...event}))
   }
 
