@@ -5,6 +5,7 @@ import * as fromStore from '../../store';
 
 import { Person } from '../../models/person.model';
 import { TableColumns } from 'src/app/models/table-columns.model';
+import { ValueProperty } from 'src/app/models/value-property.model';
 
 @Component({
   selector: 'app-employees-list',
@@ -40,9 +41,10 @@ export class EmployeesListComponent implements OnInit {
     console.log('onModifiedColumns: ', event);
   }
 
-  public onFilterTable(event: {value, property}) {
+  public onFilterTable(event: ValueProperty) {
     console.log('employees-list onFilterTable event: ', event);
-    this.store.select(fromStore.getEmployeesListFiltered, {...event}).subscribe(result => result)
+    // this.store.select(fromStore.getEmployeesListFiltered, {...event}).subscribe(result => result)
+    this.store.dispatch(new fromStore.FilterEmployeesList({...event}))
   }
 
   public onSortTable(event: {value, property}) {
