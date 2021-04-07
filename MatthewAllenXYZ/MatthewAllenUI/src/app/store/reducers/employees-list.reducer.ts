@@ -7,7 +7,7 @@ export interface EmployeesListState {
     entities: { [businessEntityID: number]: Person };
     loaded: boolean;
     loading: boolean;
-    filter: {[property: string]: string};
+    filter: { [property: string]: string };
     sort: ValueProperty;
 }
 
@@ -94,7 +94,6 @@ export function reducer(
         }
 
         case fromEmployeesList.FILTER_EMPLOYEES_LIST: {
-            console.log('reducer FILTER_EMPLOYEES_LIST filter: ');
             return {
                 ...state,
                 loading: true
@@ -103,21 +102,10 @@ export function reducer(
 
         case fromEmployeesList.FILTER_EMPLOYEES_LIST_SUCCESS: {
             const currentFilter = action.payload;
-            const filter = {...state.filter};
+            const filter = { ...state.filter };
 
-            // for (let [index, person] of action.payload.entries()) {
-            //     if (currentEntities[person.businessEntityID]) {
-            //         entities[person.businessEntityID] = currentEntities[person.businessEntityID];
-            //     } else {
-            //         entities[person.businessEntityID] = person;
-            //     }
-            // }
-
-            // const 
-
-            if(filter[currentFilter.property]) {
-                console.log('FILTER_EMPLOYEES_LIST_SUCCESS currentFilter.value: ', currentFilter.value);
-                if(currentFilter.value) {
+            if (filter[currentFilter.property]) {
+                if (currentFilter.value) {
                     filter[currentFilter.property] = currentFilter.value;
                 } else {
                     delete filter[currentFilter.property];
@@ -126,8 +114,6 @@ export function reducer(
             } else {
                 filter[currentFilter.property] = currentFilter.value;
             }
-
-            console.log('reducer FILTER_EMPLOYEES_LIST_SUCCESS filter: ', filter, ' currentFilter: ', currentFilter);
 
             return {
                 ...state,
@@ -146,7 +132,6 @@ export function reducer(
         }
 
         case fromEmployeesList.SORT_EMPLOYEES_LIST: {
-            console.log('reducer SORT_EMPLOYEES_LIST sort: ');
             return {
                 ...state,
                 loading: true
@@ -155,7 +140,6 @@ export function reducer(
 
         case fromEmployeesList.SORT_EMPLOYEES_LIST_SUCCESS: {
             const sort = action.payload;
-            console.log('reducer SORT_EMPLOYEES_LIST_SUCCESS sort: ', sort);
             return {
                 ...state,
                 loading: false,

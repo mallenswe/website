@@ -2,6 +2,11 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output
 import { TableColumns } from 'src/app/models/table-columns.model';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
+const SORT_NEUTRAL = 'neutral';
+const SORT_ASC = 'asc';
+const SORT_DESC = 'desc';
+
+
 @Component({
   selector: 'app-drag-drop-table',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -17,58 +22,91 @@ export class DragDropTableComponent implements OnInit {
 
   public columnHeaders: String[];
   public savedCollection: boolean = false;
+  public sorters: Map<string, string>;
+
 
   ngOnInit() {
     this.columnHeaders = this.columns.map(item => item.title);
+    this.sorters = this.setSorters();
   }
 
   updateColumns(): void {
-    console.log('updateColumns: ', this.columns);
     this.modifiedColumns.emit();
   }
 
   saveColumns(): void {
-    console.log('saveColumns: ', this.columns)
     this.modifiedColumns.emit();
   }
 
 
-  drop(event: CdkDragDrop<string[]>) {
-    console.log('event: ', event);
+  drop(event: CdkDragDrop<string[]>): void {
     moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
 
     // reassign position
     // The column was moved right
-    console.log('event.currentIndex: ', event.currentIndex, 'event.previousIndex: ', event.previousIndex)
     if (event.currentIndex > event.previousIndex) {
-      console.log('currentIndex is greater')
       for (let i = event.currentIndex; i >= event.previousIndex; i--) {
-        console.log('i: ', i, ' this.columns[i]: ', this.columns[i]);
         this.columns[i].position = i;
       }
-      console.log(' this.columns: ', this.columns)
     } else {
       // The column was moved left
-      console.log('currentIndex is less')
       for (let i = event.currentIndex; i <= event.previousIndex; i++) {
-        console.log('i: ', i, ' this.columns[i]: ', this.columns[i]);
         this.columns[i].position = i;
       }
-      console.log(' this.columns: ', this.columns)
     }
 
   }
 
-  filterTable(event, property) {
+  filterTable(event, property): void {
     const value = event.target.value;
-    console.log('filterTable event: ', value, ' property: ', property);
     this.filterTableEvent.emit({value, property});
   }
 
-  sortTable(event, property) {
-    const value = event.target.value;
-    console.log('sortTable event: ', event, ' property: ', property);
-    this.sortTableEvent.emit({value,property})
+  setSorters(): Map<string,string> {
+    let sorterMap = new Map();
+    this.columns.forEach(header => sorterMap.set(header.property, SORT_NEUTRAL));
+    return sorterMap;
+  }
+
+  get sorterIcon() {
+    return (sortValue: string) => {
+        switch(sortValue) {
+          case SORT_ASC: return 'arrow_upward';
+          case SORT_DESC: return 'arrow_downward';
+          case SORT_NEUTRAL:
+          default: return 'swap_vert';
+        }
+    }
+  }
+
+  sortTable(value, property): void {
+    this.sorters.forEach((value, key) => {
+      if(key === property) {
+        switch(value) {
+          case SORT_NEUTRAL: {
+            this.sorters.set(property, SORT_ASC);
+            break;
+          }
+          
+          case SORT_ASC: {
+            this.sorters.set(property, SORT_DESC);
+            break;
+          }
+    
+          case SORT_DESC: 
+          default: {
+            this.sorters.set(property, SORT_NEUTRAL);
+            break;
+          }
+        }
+      } else if (value !== SORT_NEUTRAL) {
+        this.sorters.set(key, SORT_NEUTRAL);
+      }
+    });
+
+    const sort = {value: this.sorters.get(property), property}
+
+    this.sortTableEvent.emit(sort)
   }
 
 

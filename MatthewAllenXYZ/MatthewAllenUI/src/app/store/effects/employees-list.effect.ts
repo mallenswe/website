@@ -22,7 +22,6 @@ export class EmployeesListEffects {
             ofType(employeesListActions.LOAD_EMPLOYEES_LIST)
             , map((action: employeesListActions.LoadEmployeesList) => action.payload)
             , switchMap((employeeAmount) => {
-                console.log(`loadEmployeesList$ switchMap employeeAmount: `, employeeAmount);
                 return this.employeeService.getEmployeeListByCount(employeeAmount)
                     .pipe(
                         map(employeesList => new employeesListActions.LoadEmployeesListSuccess(employeesList))
@@ -37,7 +36,6 @@ export class EmployeesListEffects {
             ofType(employeesListActions.UPDATE_EMPLOYEES_LIST)
             , map((action: employeesListActions.UpdateEmployeesList) => action.payload)
             , switchMap((employeeAmount) => {
-                console.log(`updatemployeesList$ switchMap employeeAmount: `, employeeAmount);
                 return this.employeeService.getEmployeeListByCount(employeeAmount)
                     .pipe(
                         map(employeesList => new employeesListActions.UpdateEmployeesListSuccess(employeesList))
@@ -52,7 +50,6 @@ export class EmployeesListEffects {
             ofType(employeesListActions.FILTER_EMPLOYEES_LIST)
             , map((action: employeesListActions.FilterEmployeesList) => action.payload)
             , switchMap((filterData) => {
-                console.log('filterEmployeesList$ switchMap ValueProperty: ', filterData);
                 return of(new employeesListActions.FilterEmployeesListSuccess(filterData))
                     .pipe(
                         map(filter => filter)
@@ -67,7 +64,6 @@ export class EmployeesListEffects {
             ofType(employeesListActions.SORT_EMPLOYEES_LIST)
             , map((action: employeesListActions.SortEmployeesList) => action.payload)
             , switchMap((sortData) => {
-                console.log('sortEmployeesList$ switchMap ValueProperty: ', sortData);
                 return of(new employeesListActions.SortEmployeesListSuccess(sortData))
                     .pipe(
                         map(sort => sort)

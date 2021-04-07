@@ -19,10 +19,7 @@ export class PersonFinderComponent implements OnInit {
   }
 
   public findPerson(event): void {
-    console.log('findPerson event: ', event);
-    console.log('findPerson this.findBusinessEntityID: ', this.findBusinessEntityID);
     this.personService.getPersonByBusinessEntityID(this.findBusinessEntityID).subscribe((person: Person) => {
-      console.log('getPersonByBusinessEntityID person: ', person);
       this.searchedPerson = person;
     })
   }

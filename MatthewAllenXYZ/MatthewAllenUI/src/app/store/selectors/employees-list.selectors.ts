@@ -14,16 +14,44 @@ export const getEmployeesListSort = createSelector(getEmployeesListState, fromEm
 export const getEmployeesListEntities = createSelector(getEmployeesListState, fromEmployeesList.getEmployeesListEntities);
 
 export const getEmployeesList = createSelector(getEmployeesListEntities, getEmployeesListFilter, getEmployeesListSort, (entities, filterData, sort) => {
-    console.log('getEmployeesList entities: ', entities);
+    // console.log('getEmployeesList entities: ', entities);
     const dataMap = Object.keys(entities).map(businessEntityId => entities[parseInt(businessEntityId, 10)]);
-    console.log(' dataMap: ', dataMap);
-    console.log(' filterData: ', filterData, Object.keys(filterData).length);
+    // console.log(' dataMap: ', dataMap);
+    // console.log('getEmployeesListSort Sort: ', sort);
+    // console.log(' filterData: ', filterData, Object.keys(filterData).length);
+    if(sort.property) {
+        // console.log('selector sort: ', sort);
+        dataMap.sort((a,b) => {
+            // console.log('sorting a: ', a[sort.property], ' b: ', b[sort.property], ' asc: ', (a[sort.property] > b[sort.property]));
+            switch(sort.value) {
+                case 'asc': {
+                   if(a[sort.property] < b[sort.property]) {
+                       return -1
+                   } else {
+                       return 1
+                   }
+                }
+                case 'desc': {
+                    if(a[sort.property] > b[sort.property]) {
+                        return -1
+                    } else {
+                        return 1
+                    }
+                }
+                case 'neutral':
+                default: {
+                    return 0;
+                }
+            }
+        })
+    }
+    
     if (!Object.keys(filterData).length) return dataMap;
     else {
         const filteredData = dataMap.filter(person => {
             let filterMatch = true;
             for (let property in filterData) {
-                console.log('dataMap.filter proprty in filterData: ', property, ' person[property]: ', person[property]);
+                // console.log('dataMap.filter proprty in filterData: ', property, ' person[property]: ', person[property]);
                 if ((person[property] as string).toLowerCase().includes((filterData[property] as string).toLowerCase())) {
                     continue;
                 } else {
@@ -38,15 +66,5 @@ export const getEmployeesList = createSelector(getEmployeesListEntities, getEmpl
 
 
 });
-
-// export const getEmployeesListFiltered = createSelector(getEmployeesList, getEmployeesListFilter, (entities, filterData) => {
-//     console.log('getEmployeesList: ', getEmployeesList, ' getEmployeesListFilter: ', getEmployeesListFilter, ' entities: ', entities);
-//     if(!filterData.value) return entities;
-
-//     const filteredData = entities.filter(person => (person[filterData.property]).toLowerCase().includes(filterData.value.toLowerCase()));
-
-//     return Object.keys(filteredData).map(businessEntityId => filteredData[parseInt(businessEntityId, 10)]);
-// });
-
 
 

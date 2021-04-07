@@ -39,13 +39,14 @@
               <button
                 mat-button
                 class="sort"
-                (click)="sortTable($event, header.property)"
+                (click)="sortTable($event.currentTarget.value, header.property)"
+                value={{sorters.get(header.property)}}
               >
                 <mat-icon
                   aria-hidden="false"
-                  aria-label="Example code icon"
-                  class="code-icon"
-                  >code</mat-icon
+                  aria-label="Sort Icon"
+                  class="sort-icon"
+                  >{{sorterIcon(sorters.get(header.property))}}</mat-icon
                 >
               </button>
             </div>
