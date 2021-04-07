@@ -22,8 +22,4 @@ export class AppComponent {
       highlightCard.style.backgroundColor = `rgb(${commaSeperatedColor})`;
     })
   }
-
-  public togglePersonFinder(): void {
-    this.showPersonFinder = !this.showPersonFinder;
-  }
 }

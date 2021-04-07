@@ -103,18 +103,12 @@ export function reducer(
         case fromEmployeesList.FILTER_EMPLOYEES_LIST_SUCCESS: {
             const currentFilter = action.payload;
             const filter = { ...state.filter };
-
-            if (filter[currentFilter.property]) {
+            
                 if (currentFilter.value) {
                     filter[currentFilter.property] = currentFilter.value;
                 } else {
                     delete filter[currentFilter.property];
                 }
-
-            } else {
-                filter[currentFilter.property] = currentFilter.value;
-            }
-
             return {
                 ...state,
                 loading: false,

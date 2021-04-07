@@ -13,6 +13,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { reducers, effects } from './store';
 import { BasicTableComponent } from './presentation/basic-table/basic-table.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 
@@ -22,6 +23,7 @@ import { BasicTableComponent } from './presentation/basic-table/basic-table.comp
     WeatherForecastComponent,
     PersonFinderComponent,
     BasicTableComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

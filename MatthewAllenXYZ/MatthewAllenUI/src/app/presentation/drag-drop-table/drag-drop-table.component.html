@@ -16,7 +16,7 @@
     Save
   </button>
 </div>
-<div class="table-container">
+<div *ngIf="data && columns" class="table-container">
   <table
     cdkDropList
     cdkDropListOrientation="horizontal"
@@ -40,13 +40,13 @@
                 mat-button
                 class="sort"
                 (click)="sortTable($event.currentTarget.value, header.property)"
-                value={{sorters.get(header.property)}}
+                value="{{ sorters.get(header.property) }}"
               >
                 <mat-icon
                   aria-hidden="false"
                   aria-label="Sort Icon"
                   class="sort-icon"
-                  >{{sorterIcon(sorters.get(header.property))}}</mat-icon
+                  >{{ sorterIcon(sorters.get(header.property)) }}</mat-icon
                 >
               </button>
             </div>
